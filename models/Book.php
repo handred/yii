@@ -12,16 +12,13 @@ class Book extends ActiveRecord {
     }
 
     public function rules() {
-        
-        //return [];
-        
-
+       
         return [
             [['name', 'fio', 'year'], 'required'],
-            //[['user'], 'integer'],
+            [['user'], 'integer'],
             [['name', 'fio'], 'string', 'max' => 255],
-            [['year'], 'integer', 'max' => 4],
-            [['photo'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg']
+            [['year'], 'string', 'max' => 4],
+            [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg']
         ];
     }
 
