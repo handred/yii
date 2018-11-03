@@ -7,25 +7,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Book;
+use app\models\User;
 
-class BookController extends Controller
-{
+class BookController extends Controller {
 
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
-
-    
-    public function rules()
-    {
-        return [
-            [['name', 'fio', 'year','photo', 'user'], 'required'],
-            [['user'], 'integer'],
-            [['name', 'fio', 'photo'], 'string', 'max' => 255]
-        ];
+    public function actionIndex() {
+        $user = Yii::$app->user->identity;
+        return $this->render('index', ['user'=>$user, 'books'=>Book::find()->all(), 'model'=> new Book()]);
     }
     
 }
