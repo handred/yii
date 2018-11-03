@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use app\models\Book;
+
 
 $this->title = 'Книги';
 $this->params['breadcrumbs'][] = $this->title;

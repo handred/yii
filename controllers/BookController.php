@@ -16,6 +16,7 @@ class BookController extends Controller {
     public function actionIndex() {
         
         $this->checkpost();
+        
         $user = Yii::$app->user->identity;
         return $this->render('index', ['user' => $user, 'books' => Book::find()->all(), 'model' => new Book]);
     }
@@ -40,7 +41,7 @@ class BookController extends Controller {
         }
 
         if ($model->photo = UploadedFile::getInstance($model, 'photo')) {
-                $model->photo = $model->upload();
+                $model->photo = $model->uploadphoto();
         }
         
         $model->user = $user->id;
