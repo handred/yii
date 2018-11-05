@@ -13,7 +13,7 @@ if($errors = $model->getErrors()){
 }
 ?>
 
-<div class="form">
+<div class="form addbook block">
     <h3>Добавить книгу</h3>
     <?php
     $form = ActiveForm::begin(['action'=>['book/create'], 'options' => ['enctype' => 'multipart/form-data', 'method' => 'post']]);

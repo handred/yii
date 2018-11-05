@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $books app\models\Book */
 ?>
-<div class="books">
+<div class="books block">
     <?php
     foreach ($books as $item) {
         ?>
