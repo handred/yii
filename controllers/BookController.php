@@ -9,7 +9,6 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\Book;
 use app\models\User;
-use app\models\LoginForm;
 use yii\web\UploadedFile;
 
 class BookController extends Controller {
@@ -38,14 +37,14 @@ class BookController extends Controller {
             return $this->render('index', ['user' => $user, 'books' => Book::find()->all(), 'model' => $model]);
         }
 
-
         if ($model->photo = UploadedFile::getInstance($model, 'photo')) {
             $model->photo = $model->uploadphoto();
         }
 
         $model->user = $user->id;
         $model->insert();
-        $this->redirect(['book/index']);
+        
+        $this->redirect(['index']);
     }
 
 }

@@ -2,8 +2,11 @@
 
 namespace app\models;
 
+use \yii;
 use \yii\db\ActiveRecord;
 use \yii\web\UploadedFile;
+
+
 
 class Book extends ActiveRecord {
 
@@ -14,7 +17,7 @@ class Book extends ActiveRecord {
     public function rules() {
         return [
             [['name', 'fio', 'year'], 'required'],
-            [['user'], 'integer'],
+            [['user', 'onbase'], 'integer'],
             [['name', 'fio'], 'string', 'max' => 255],
             [['year'], 'string', 'max' => 4],
             [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg']
@@ -29,12 +32,12 @@ class Book extends ActiveRecord {
         $this->photo->saveAs('uploads/' . $photo);
         return $photo;
     }
-    
-    public function getimage(){
-        if(!is_file('uploads/'.$this->photo)){
+
+    public function getimage() {
+        if (!is_file('uploads/' . $this->photo)) {
             return false;
         }
-        return  '<a target="_blank" href="/uploads/'.$this->photo.'"><img width="80" src="/uploads/'.$this->photo.'"/></a>';
+        return '<a target="_blank" href="/uploads/' . $this->photo . '"><img width="80" src="/uploads/' . $this->photo . '"/></a>';
     }
-
+ 
 }
