@@ -5,7 +5,12 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $model app\models\Book */
 
+
+if($errors = $model->getErrors()){
+    print_r($errors);
+}
 ?>
 
 <div class="form">

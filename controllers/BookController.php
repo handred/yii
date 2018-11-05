@@ -24,7 +24,7 @@ class BookController extends Controller {
         $user = Yii::$app->user->identity;
 
         if (!$user->id) {
-            return $this->render('/site/login', ['model' => new LoginForm]);
+            return $this->redirect(['site/login']);
         }
 
         $model = new Book;
@@ -37,12 +37,12 @@ class BookController extends Controller {
 
 
         if ($model->photo = UploadedFile::getInstance($model, 'photo')) {
-            $model->photo = $model->uploadphoto();
+            $model->uploadphoto();
         }
-
 
         $model->user = $user->id;
         $model->insert();
+        $this->redirect(['book/index']);
     }
 
 }

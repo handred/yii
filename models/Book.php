@@ -12,7 +12,6 @@ class Book extends ActiveRecord {
     }
 
     public function rules() {
-       
         return [
             [['name', 'fio', 'year'], 'required'],
             [['user'], 'integer'],
@@ -28,7 +27,7 @@ class Book extends ActiveRecord {
         }
         $photo = $this->photo->baseName . '.' . $this->photo->extension;
         $this->photo->saveAs('uploads/' . $photo);
-        return $photo;
+        return true;
     }
     
     public function getimage(){
