@@ -17,7 +17,8 @@ class Book extends ActiveRecord {
     public function rules() {
         return [
             [['name', 'fio', 'year'], 'required'],
-            [['user', 'onbase'], 'integer'],
+            [['user'], 'integer'],
+            [['onbase'], 'boolean'],
             [['name', 'fio'], 'string', 'max' => 255],
             [['year'], 'string', 'max' => 4],
             [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg']

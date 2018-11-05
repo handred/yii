@@ -11,7 +11,9 @@ use app\models\Book;
 use app\models\User;
 use yii\web\UploadedFile;
 
+
 class BookController extends Controller {
+    
 
     public function actionIndex() {
         $user = Yii::$app->user->identity;
@@ -25,15 +27,15 @@ class BookController extends Controller {
         if (!$user->id) {
             return $this->redirect(['site/login']);
         }
-        
-        if (!Yii::$app->request->isPost){
-             return $this->redirect(['index']); 
+
+        if (!Yii::$app->request->isPost) {
+            return $this->redirect(['index']);
         }
 
         $model = new Book;
 
         if (!$model->load(\Yii::$app->request->post()) ||
-            !$model->validate()) {
+                !$model->validate()) {
             return $this->render('index', ['user' => $user, 'books' => Book::find()->all(), 'model' => $model]);
         }
 
@@ -43,8 +45,18 @@ class BookController extends Controller {
 
         $model->user = $user->id;
         $model->insert();
-        
+
         $this->redirect(['index']);
     }
 
+    public function actionCheckbox() {
+        if (\Yii::$app->request->isPjax && $id = \Yii::$app->request->post('id')) {
+            
+            $model = Book::findOne($id);
+            $user = Yii::$app->user->identity;
+            $model->onbase = !$model->onbase;
+            $model->save(); 
+            return $this->render('_checkbox', ['item' => $model, 'user' => $user]);
+        }
+    }
 }

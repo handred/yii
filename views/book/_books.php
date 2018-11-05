@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-
 /* @var $books app\models\Book */
 ?>
 <div class="books">
@@ -15,7 +14,10 @@ use yii\helpers\Html;
             <div class="name"><?= $item->name ?></div>
             <div class="year"><?= $item->year ?></div>
             <div class="photo"><?= $item->getimage() ?></div>
-            <div class="onbase"><?=$this->render('_checkbox', ['item' => $item]);?>
+            <div class="onbase">
+                <?
+                echo $this->render('_checkbox', ['item' => $item, 'user' => $user]);
+                ?>
             </div>
         </div>
         <?php

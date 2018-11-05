@@ -1,23 +1,25 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
-if ($user->id) {
+
+if (!$user->id) {
     echo $item->onbase ? 'В наличии' : 'Нет в наличии';
     return;
 }
 
-Pjax::begin([
-        // Опции Pjax
-]);
+
+Pjax::begin(['id'=>'pjax' . $item->id]);
 $form = ActiveForm::begin([
-            'options' => ['data' => ['pjax' => true]],
-                // остальные опции ActiveForm
+            'action' => ['book/checkbox'],
+            'id' => 'checkbox-form_' . $item->id,
+            'options' => [
+                'data-pjax' => true,
+            ]
         ]);
-
-echo $form->field($item, 'onbase')->checkbox(['label' => 'В наличии']);
-
+echo $form->field($item, 'onbase')->checkbox(['label' => 'В наличии', 'onchange'=>'$(this.form).trigger("submit")']);
+echo Html::hiddenInput('id', $item->id);
 ActiveForm::end();
 Pjax::end();

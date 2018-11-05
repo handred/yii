@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     
     if($books){
-        echo $this->render('_books', ['books'=> $books] ); 
+        echo $this->render('_books', ['books'=> $books, 'user' => $user] ); 
     }
     
     if($user->id){
