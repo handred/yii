@@ -36,9 +36,9 @@ class Book extends ActiveRecord {
 
     public function getimage() {
         if (!is_file('uploads/' . $this->photo)) {
-            return false;
+            return '/uploads/nofoto.jpg';
         }
-        return '<a target="_blank" href="/uploads/' . $this->photo . '"><img width="80" src="/uploads/' . $this->photo . '"/></a>';
+        return '/uploads/'.$this->photo;
     }
  
 }

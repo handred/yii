@@ -13,11 +13,12 @@ use yii\helpers\Html;
             <div class="fio"><?= $item->fio ?></div>
             <div class="name"><?= $item->name ?></div>
             <div class="year"><?= $item->year ?></div>
-            <div class="photo"><?= $item->getimage() ?></div>
+            <div class="photo">
+                <?=$this->render('_photo', ['photo' => $item->getimage()]);?>
+            </div>
+            
             <div class="onbase">
-                <?
-                echo $this->render('_checkbox', ['item' => $item, 'user' => $user]);
-                ?>
+                <?=$this->render('_checkbox', ['item' => $item, 'user' => $user]);?>
             </div>
         </div>
         <?php
