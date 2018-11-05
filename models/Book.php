@@ -27,7 +27,7 @@ class Book extends ActiveRecord {
         }
         $photo = $this->photo->baseName . '.' . $this->photo->extension;
         $this->photo->saveAs('uploads/' . $photo);
-        return true;
+        return $photo;
     }
     
     public function getimage(){

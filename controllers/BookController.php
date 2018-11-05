@@ -26,18 +26,21 @@ class BookController extends Controller {
         if (!$user->id) {
             return $this->redirect(['site/login']);
         }
+        
+        if (!Yii::$app->request->isPost){
+             return $this->redirect(['index']); 
+        }
 
         $model = new Book;
 
-        if (!Yii::$app->request->isPost ||
-            !$model->load(\Yii::$app->request->post()) ||
+        if (!$model->load(\Yii::$app->request->post()) ||
             !$model->validate()) {
             return $this->render('index', ['user' => $user, 'books' => Book::find()->all(), 'model' => $model]);
         }
 
 
         if ($model->photo = UploadedFile::getInstance($model, 'photo')) {
-            $model->uploadphoto();
+            $model->photo = $model->uploadphoto();
         }
 
         $model->user = $user->id;
