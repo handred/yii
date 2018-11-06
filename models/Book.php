@@ -2,15 +2,12 @@
 
 namespace app\models;
 
-use \yii;
+use \Yii;
 use \yii\db\ActiveRecord;
 use \yii\web\UploadedFile;
 use yii\imagine\Image;
 
 class Book extends ActiveRecord {
-
-    const upload_dir = 'uploads/';
-    const upload_dir_small = 'uploads/thumb';
 
     public static function tableName() {
         return 'book';
@@ -33,26 +30,26 @@ class Book extends ActiveRecord {
         }
         $photo = $this->photo->baseName . '.' . $this->photo->extension;
 
-        if (!is_dir(self::upload_dir)) {
-            mkdir(self::upload_dir);
+        if (!is_dir(\Yii::getAlias('@uploads'))) {
+            mkdir(\Yii::getAlias('@uploads'));
         }
 
-        if (!is_dir(self::upload_dir_small)) {
-            mkdir(self::upload_dir_small);
+        if (!is_dir(\Yii::getAlias('@uploads/thumb'))) {
+            mkdir(\Yii::getAlias('@uploads/thumb'));
         }
 
-        $this->photo->saveAs(self::upload_dir . $photo);
-
-        Image::thumbnail(self::upload_dir . $photo, 50, 50)->save(self::upload_dir_small . $photo, ['quality' => 95]);
+        $this->photo->saveAs(\Yii::getAlias('@uploads') . $photo);
+        Image::thumbnail(\Yii::getAlias('@uploads') . $photo, 50, 50)->save(\Yii::getAlias('@uploads/thumb/') . $photo, ['quality' => 95]);
 
         return $photo;
     }
 
     public function getimage() {
-        if (!is_file(self::upload_dir . $this->photo)) {
-            return '/' . self::upload_dir . '/nofoto.jpg';
+
+        if (!is_file(\Yii::getAlias('@uploads') . $this->photo)) {
+            $this->photo = 'nofoto.jpg';
         }
-        return '/' . self::upload_dir . $this->photo;
+        return ['small' => \Yii::getAlias('@web/uploads/thumb/') . $this->photo, 'big' => \Yii::getAlias('@web/uploads/') . $this->photo,];
     }
 
 }
