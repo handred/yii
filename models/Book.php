@@ -49,7 +49,7 @@ class Book extends ActiveRecord {
         if (!is_file(\Yii::getAlias('@uploads') . $this->photo)) {
             $this->photo = 'nofoto.jpg';
         }
-        return ['small' => \Yii::getAlias('@web/uploads/thumb/') . $this->photo, 'big' => \Yii::getAlias('@web/uploads/') . $this->photo,];
+        return ['small' => \Yii::getAlias('@web/uploads/thumb/') . $this->photo, 'big' => \Yii::getAlias('@web/uploads/') . $this->photo];
     }
 
 }
