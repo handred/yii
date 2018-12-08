@@ -3,6 +3,21 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
+
+
+
+$modules = scandir(realpath('../modules'));
+
+$module_inc = [];
+foreach($modules as $v){
+    if(in_array($v,['.','..'])){continue;}
+    $module_inc[$v] = [
+        'class'=>'app\modules\\'.$v.'\Module',
+        //'defaultRoute'=>'index'
+        ];
+}
+
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -56,6 +71,9 @@ $config = [
     'params' => $params,
 ];
 
+$config['modules'] = $module_inc;
+
+
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
@@ -72,5 +90,6 @@ if (YII_ENV_DEV) {
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
+
 
 return $config;

@@ -5,8 +5,8 @@ namespace app\modules\pages;
 /**
  * Pages module definition class
  */
-class Module extends \yii\base\Module
-{
+class Module extends \yii\base\Module {
+
     /**
      * {@inheritdoc}
      */
@@ -15,10 +15,14 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public function init()
-    {
+    public function init() {
         parent::init();
 
+        $this->params['foo'] = 'bar';
+        $this->defaultRoute = 'index/index';
+
+        //'defaultRoute' => 'user/index'
         // custom initialization code goes here
     }
+
 }
