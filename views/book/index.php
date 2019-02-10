@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo $this->render('_books', ['books'=> $books, 'user' => $user] ); 
     }
     
-    if($user->id){
+    if(@$user->id){
         echo $this->render('_form', ['model'=> $model] ); 
     }
     
