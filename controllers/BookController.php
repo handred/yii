@@ -2,15 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
-use yii\web\Controller;
-use yii\filters\AccessControl;
-use yii\web\Response;
-use yii\filters\VerbFilter;
 use app\models\Book;
-use app\models\User;
-use yii\web\UploadedFile;
 use app\queue\TestQueue;
+use Yii;
+use yii\queue\file\Queue;
+use yii\web\Controller;
+use yii\web\UploadedFile;
 
 class BookController extends Controller
 {
@@ -24,7 +21,7 @@ class BookController extends Controller
         ]));
 
 
-        /** @var yii\queue\file\Queue $queue */
+        /** @var Queue $queue */
 //        $queue = Yii::$app->queue;
 //        $queue->run();
 
