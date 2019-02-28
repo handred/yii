@@ -5,27 +5,29 @@ $db = require __DIR__ . '/db.php';
 
 
 
-
 $modules = scandir(realpath('../modules'));
 
 $module_inc = [];
-foreach($modules as $v){
-    if(in_array($v,['.','..'])){continue;}
+foreach ($modules as $v) {
+    if (in_array($v, ['.', '..'])) {
+        continue;
+    }
     $module_inc[$v] = [
-        'class'=>'app\modules\\'.$v.'\Module',
-        //'defaultRoute'=>'index'
-        ];
+        'class' => 'app\modules\\' . $v . '\Module',
+            //'defaultRoute'=>'index'
+    ];
 }
 
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log',
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-        '@uploads'   => '@app/web/uploads/'
+        '@npm' => '@vendor/npm-asset',
+        '@uploads' => '@app/web/uploads/'
     ],
     'components' => [
         'request' => [
@@ -59,18 +61,22 @@ $config = [
             ],
         ],
         'db' => $db,
-        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
+               ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
+                //'<action:.+>'=>'site/index'
             ],
         ],
-        
     ],
     'params' => $params,
 ];
+
+$queue = require __DIR__ . '/queue.php';
+$config['bootstrap'][] = $queue['bootstrap'][0];
+$config['components']['queue'] = $queue['components']['queue'];
+
 
 $config['modules'] = $module_inc;
 
@@ -80,15 +86,18 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'panels' => [
+            'queue' => \yii\queue\debug\Panel::class,
+        ],
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 

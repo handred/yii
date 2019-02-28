@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\components\myWidjet;
 
 AppAsset::register($this);
 ?>
@@ -25,6 +26,8 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+    
+    
 
 <div class="wrap">
     <?php
@@ -64,6 +67,17 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+        
+        <?
+        //echo myWidjet::widget(['name1'=>'TEST']);
+        
+        myWidjet::begin();
+        ?>
+        <h3>dfsf sfs df</h3>
+        <?php
+        myWidjet::end();
+        ?>
+        
         <?= $content ?>
     </div>
 </div>
