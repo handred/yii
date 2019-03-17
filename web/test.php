@@ -10,11 +10,13 @@ ini_set('display_errors', 'on');
 
 define('AAA', 'AAA');
 $arr = [];
-$r='ee';
+//$r='ee';
 try {
     for ($i = 0; $i < 100000; $i++) {
 //$arr[BBB] = $i;
-        $arr[$r] = $i;
+       // if(isset($r)){
+            $arr[$r] = $i;
+        //}
     }
 } catch (Exception $e) {
     echo $e->getMessage();
