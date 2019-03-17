@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget>
-    <type>user</type>
 	<mouse>y</mouse>
 	<ver>0.0.1</ver>
 	<fullwidget>y</fullwidget>
@@ -14,8 +13,6 @@
 	<multiapp>y</multiapp>
 	<widgetname>ott-play</widgetname>
 	<description></description>
-	<width>1280</width>
-	<height>720</height>
 	<ThumbIcon>ott106x87.png</ThumbIcon>
 	<BigThumbIcon>ott115x95.png</BigThumbIcon>
 	<BigListIcon>ott95x78.png</BigListIcon>
