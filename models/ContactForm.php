@@ -1,8 +1,9 @@
 <?php
 
-use yii\base\Model;
-
 namespace app\models;
+
+
+use yii\base\Model;
 
 /**
  * ContactForm is the model behind the contact form.

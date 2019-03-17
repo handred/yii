@@ -74,8 +74,8 @@ $config = [
 ];
 
 $queue = require __DIR__ . '/queue.php';
-//$config['bootstrap'][] = $queue['bootstrap'][0];
-//$config['components']['queue'] = $queue['components']['queue'];
+$config['bootstrap'][] = $queue['bootstrap'][0];
+$config['components']['queue'] = $queue['components']['queue'];
 
 
 $config['modules'] = $module_inc;
