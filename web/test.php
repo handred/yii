@@ -12,7 +12,7 @@ define('AAA', 'AAA');
 $arr = [];
 $r='ee';
 try {
-    for ($i = 0; $i < 100000; $i++) {
+    for ($i = 0; $i < 1000000; $i++) {
 //$arr[BBB] = $i;
        // if(isset($r)){
             $arr[$r] = $i;
