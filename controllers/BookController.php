@@ -17,7 +17,7 @@ class BookController extends Controller {
 
     public function actionIndex() {
         $user = Yii::$app->user->identity;
-        return $this->render('index', ['user' => $user, 'books' => Book::find()->all(), 'model' => new Book]);
+        return $this->render('index', ['user' => $user, 'books' => Book::find()->cache(600)->all(), 'model' => new Book]);
     }
 
     public function actionCreate() {
