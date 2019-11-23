@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 
-if (!$user->id) {
+if (!@$user->id) {
     echo $item->onbase ? 'В наличии' : 'Нет в наличии';
     return;
 }

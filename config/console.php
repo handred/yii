@@ -36,6 +36,12 @@ $config = [
     */
 ];
 
+$queue= require __DIR__ . '/queue.php';
+$config['bootstrap'][] = $queue['bootstrap'][0];
+$config['components']['queue'] = $queue['components']['queue'];
+
+
+
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'gii';

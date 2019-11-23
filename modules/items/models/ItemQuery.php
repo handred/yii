@@ -1,5 +1,8 @@
 <?php
 
+use app\modules\items\models\Items;
+use yii\db\ActiveQuery;
+
 namespace app\modules\items\models;
 
 /**
@@ -7,7 +10,7 @@ namespace app\modules\items\models;
  *
  * @see Items
  */
-class ItemQuery extends \yii\db\ActiveQuery
+class ItemQuery extends ActiveQuery
 {
     /*public function active()
     {

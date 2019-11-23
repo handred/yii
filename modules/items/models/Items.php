@@ -1,9 +1,11 @@
 <?php
 
-namespace app\modules\items\models;
+use app\modules\items\models\ItemQuery;
+use Codeception\PHPUnit\Constraint\Page;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
-use Yii;
-use app\modules\pages\models\Pages as Page;
+namespace app\modules\items\models;
 
 /**
  * This is the model class for table "item".
@@ -15,7 +17,7 @@ use app\modules\pages\models\Pages as Page;
  *
  * @property Page $page
  */
-class Items extends \yii\db\ActiveRecord
+class Items extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -53,7 +55,7 @@ class Items extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getPage()
     {
