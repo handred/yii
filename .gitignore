@@ -32,6 +32,9 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 
+/composer.lock
+/composer.json
+
 /web/uploads
 /config/db.php
 /web/index.php
